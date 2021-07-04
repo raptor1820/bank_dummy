@@ -80,12 +80,12 @@ app.post("/login", async (req, res) => {
           });
           res.json({ code: 200, message: "login successful", link: "home" });
         } else {
-          res.json({ code: 200, message: "login successful", link: "pending" });
           let token = await jwt.sign({ id: tempUser[0]._id }, secret);
           res.cookie("jwt", token, {
             maxAge: 15000,
             httpOnly: true,
           });
+          res.json({ code: 200, message: "login successful", link: "pending" });
         }
       } else {
         res.json({ code: 404, message: "email or password is incorrect" });
