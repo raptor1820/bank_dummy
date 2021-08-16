@@ -14,7 +14,6 @@ env.config({
 });
 app.set("view engine", "ejs");
 var secret = process.env.secret;
-
 mongoose
   .connect(process.env.url, {
     useUnifiedTopology: true,
@@ -148,7 +147,7 @@ app.get("/logout", (req, res) => {
   res.redirect("/");
 });
 
-app.listen(process.env.PORT, (error) => {
+app.listen(process.env.PORT || 3000,(error) => {
   if (error) console.log("error");
   else console.log("connected to server");
 });
